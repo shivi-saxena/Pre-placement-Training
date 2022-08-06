@@ -1,0 +1,36 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int uknapsack(int limit, int n, int val[], int weight[])
+{
+    int arr[limit+1];
+    memset(arr, 0, sizeof arr);
+    for(int i=0; i<limit; i++)
+    {
+    	for(int j=0; j<n; j++)
+       	{
+       		if(weight[j]<=i)
+       	    	arr[i]=max(arr[i],arr[i-weight[j]]+val[j]);
+ 		}
+ 	}
+return arr[limit];
+}
+ 
+int main()
+{
+    int limit,n;
+    cout<<"Enter the maximum weight that can be taken:"<<endl;
+    cin>>limit;
+    cout<<"Enter the number of items:"<<endl;
+    cin>>n;
+    int val[n],weight[n];
+    for(int i=0;i<n;i++)
+    {
+    	cout<<"Value:"<<endl;
+    	cin>>val[i];
+    	cout<<"Weight:"<<endl;
+    	cin>>weight[i];
+    }
+    cout<<uknapsack(limit,n,val,weight);
+return 0;
+}
