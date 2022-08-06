@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+    vector<int>nums;
+    inorder(root,nums);//for inserting nodes value in vector num
+    
+    if(nums.size()==1)return true;//for edge cases of single digits [0] or [1] 
+    
+    int i=0,j=nums.size();
+    while(i<j)
+    {   
+        if(nums[i]>=nums[i+1])//for edge cases [2,2,3] two equal numbers
+            return false;
+        i++;                //for moving to next integer in array
+        
+        if(i+1==j)          //reaching to end of array 
+            return true;
+      }
+      return false;
+    
+      }
+void inorder(TreeNode* root, vector<int>& nums)
+{
+    if (root==NULL)return;
+    inorder(root->left,nums);
+    nums.push_back(root->val);
+    inorder(root->right,nums);
+}
+};
